@@ -1,12 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\BookRecSystem",
-    "\\mainapp",
     "\\static",
     "\\static\\mainapp",
-    "\\static\\mainapp\\png"
+    "\\static\\mainapp\\css",
+    "\\static\\mainapp\\dataset",
+    "\\static\\mainapp\\model_files",
+    "\\static\\mainapp\\png",
+    "\\static\\mainapp\\png\\mygenre"
   ],
-  "SelectedNode": "\\static\\mainapp\\png\\banner",
+  "SelectedNode": "\\static\\mainapp\\model_files\\surprise",
   "PreviewInSolutionExplorer": false
 }
