@@ -6,9 +6,11 @@
     "\\static\\mainapp\\css",
     "\\static\\mainapp\\dataset",
     "\\static\\mainapp\\model_files",
+    "\\static\\mainapp\\model_files\\surprise",
+    "\\static\\mainapp\\model_files\\tf-idf",
     "\\static\\mainapp\\png",
     "\\static\\mainapp\\png\\mygenre"
   ],
-  "SelectedNode": "\\static\\mainapp\\model_files\\surprise",
+  "SelectedNode": "\\static\\mainapp\\model_files\\tf-idf\\cosine_rating_sim.npz",
   "PreviewInSolutionExplorer": false
 }
