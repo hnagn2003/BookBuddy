@@ -1,0 +1,63 @@
+{% extends 'mainapp/layout.html' %}
+{% load i18n %}
+{% load static %}
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+
+{% block title %}
+Sign Up
+{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'mainapp/css/signup.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+{% endblock head %}
+
+{% block main %}
+<div class="container account-block ">
+    <div class="h-100 row">
+        <div class="h-100 col-12 col-sm-12 col-xl-8 signup-block">
+            <h3 class="welcome">Welcome!</h3>
+            <form method="POST" action="{% url 'account_signup' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    {{ form.email }}
+                    <br><br>
+                    {{ form.username }}
+                    <br><br>
+                    {{ form.password1 }}
+                    <br><br>
+                    {{ form.password2 }}
+                    <div class="error_div">
+                        {% if form.errors %}
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <strong>{{ error|escape }}</strong>
+                        {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                        <strong>{{ error|escape }}</strong>
+                        {% endfor %}
+                        <br>
+                        {% endif %}
+                        <button class="signupbutton" type="submit">{% trans "Sign Up" %}</button>
+                        <strong>or</strong>
+                        <a href="{% provider_login_url 'google' %}">
+                            <button class="googlebutton">
+                                <i class="fa fa-google fa-x" aria-hidden="true"></i> 
+                                Sign Up With Google
+                            </button>
+                        </a>
+                        <br>
+                        <a class="btn-bot" href="{% url 'account_login' %}"><strong>Already have an account?</strong></a>
+                        <br>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main %}
