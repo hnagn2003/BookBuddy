@@ -179,12 +179,12 @@ SITE_ID = 1
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
         "APP": {
-            "client_id": os.environ.get("KITABE_AUTH_ID"),
-            "secret": os.environ.get("KITABE_AUTH_SECRET"),
+            "client_id": "69624639366-813qicen9qoc8vq7ikpk6tl328jkkcul.apps.googleusercontent.com",
+            "secret": "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",
             "key": "",
         }
     }
-}
+} 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
