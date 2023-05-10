@@ -133,7 +133,7 @@
 
                         <div class="col-8">
                             <strong>Summary: </strong><br>
-                            <img id="loading" src="{% static 'mainapp/gif/loading.gif' %}">
+                            {% comment %} <img id="loading" src="{% static 'mainapp/gif/loading.gif' %}"> {% endcomment %}
                             <p id="booksummary">
 
                             </p>
@@ -247,6 +247,7 @@
                     booktoadd.innerHTML = book['original_title'];
                     booktoadd.setAttribute('data-bookid', book['book_id']);
                     booktoadd.setAttribute('data-authors', book['authors']);
+                    booktoadd.setAttribute('data-desc', book['desc']);
                     booktoadd.setAttribute('data-imageurl', book['image_url']);
                     booktoadd.setAttribute('data-averagerating', book['average_rating']);
                     booktoadd.setAttribute('href', 'javascript:;');
@@ -350,15 +351,18 @@
                 type: 'POST',
                 success: function(response) {
                     var book_details = JSON.parse(response['book_details'])[0];
-                    $('#booksummary').text("");
-                    $('#loading').show();
-                    var summary = getsummary(bookid);
+                    {% comment %} $('#booksummary').text(""); {% endcomment %}
+                    {% comment %} $('#loading').show(); {% endcomment %}
+                    /*var summary = getsummary(bookid);*/
+                    var summary = book_details.desc;
+                    {% comment %} var summary = obj.getAttribute('data-desc');  {% endcomment %}                   
                     var bookName = book_details.original_title;
                     var authors = book_details.authors;
                     var imageurl = book_details.image_url;
                     var averagerating = book_details.average_rating;
                     $('#booktitle').text(bookName);
                     $('#bookauthors').text(authors);
+                    $('#booksummary').text(summary);
                     $('#bookimage').attr('src', imageurl);
                     $("#bookrating").rateYo({
                         rating: averagerating,
