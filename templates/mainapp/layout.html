@@ -149,8 +149,8 @@
                         </div>
                         {% if user.is_authenticated %}
                         <button id="save-book-button" class="btn">Save for Later</button> 
-                        <div class='rating-block' id='rating-block-{{ book.book_id }}' onmouseover="rateStart(this)"
-                            onclick='rateBook(this)' onmouseout='finishRate(this)' data-book-id="{{ book.book_id }}">
+                        <div class='rating' id='rating-block-{{ book.book_id }}' onmouseover="rateStart(this)"
+                            onclick="rateBook(this, '#F3E7DD')" onmouseout="finishRate(this, '#F3E7DD')" data-book-id="{{ book.book_id }}">
                             <div id='button-text-{{ book.book_id }}'>Rate This Book
                             </div>
                             <div class='rateYo' id='rate-{{ book.book_id }}'></div>
@@ -310,11 +310,11 @@
             $('#rate-' + bookid).css('display', 'block');
         }
         // onclick rate
-        function rateBook(obj) {
+        function rateBook(obj, color) {
             var bookid = obj.getAttribute('data-book-id');
             var bookrating = $('#rate-' + bookid).rateYo('rating');
             $('#rating-block-' + bookid).css('transition', 'background-color 2s ease');
-            $('#rating-block-' + bookid).css('background-color', '#9b94bb');
+            $('#rating-block-' + bookid).css('background-color', color);
             console.log('#rating-block-' + bookid);
             $.ajax({
                 data: {
@@ -334,13 +334,13 @@
             });
         }
         // when hover out rate
-        function finishRate(obj) {
+        function finishRate(obj, color) {
             var bookid = obj.getAttribute('data-book-id');
             setTimeout(function() {
                 $('#rate-' + bookid).css('display', 'none');
                 $('#button-text-' + bookid).css('display', 'block');
                 $('#rating-block-' + bookid).css('transition', 'background-color 2s ease');
-                $('#rating-block-' + bookid).css('background-color', '#9b94bb');
+                $('#rating-block-' + bookid).css('background-color', color);
             }, 4000);
         }
 

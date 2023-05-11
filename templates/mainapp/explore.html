@@ -70,7 +70,7 @@ Explore
                             data-book-id="{{ book.book_id }}">More Details</a>
                         {% if user.is_authenticated %}
                         <div class='rating-block' id='rating-block-{{ book.book_id }}' onmouseover="rateStart(this)"
-                            onclick='rateBook(this)' onmouseout='finishRate(this)'
+                            onclick="rateBook(this, '#9b94bb')" onmouseout="finishRate(this, '#9b94bb')"
                             data-book-id="{{ book.book_id }}">
                             <div id='button-text-{{ book.book_id }}'>Rate This Book
                             </div>
