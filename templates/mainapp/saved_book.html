@@ -23,7 +23,8 @@ Library
     </div>
     <div id="content">
             <a href="javascript:;" onclick='bookDetails(this)' class=" btn more-details" data-book-id="{{ book.book_id }}">More Details</a>
-            <div class=" rating-block" id="rating-block-{{ book.book_id }}" onmouseover="rateStart(this)" onclick='rateBook(this)' onmouseout='finishRate(this)' data-book-id="{{ book.book_id }}">
+            <div class=" rating-block" id="rating-block-{{ book.book_id }}" onmouseover="rateStart(this)" 
+                onclick="rateBook(this, '#9b94bb')" onmouseout="finishRate(this, '#9b94bb')" data-book-id="{{ book.book_id }}">
                 <div id="button-text-{{ book.book_id }}">Rate This Book
                 </div>
                 <div class='rateYo' id='rate-{{ book.book_id }}'></div>
