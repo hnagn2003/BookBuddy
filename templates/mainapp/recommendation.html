@@ -15,7 +15,6 @@ Personalized Read
 
 <h1 class="heading text-center pt-3 pb-3">Personalized Recommendations</h1>
 
-
 <div class="card-deck pb-4 mb-5" style="margin: 0 auto;">
     {% for book in books %}
     <div class="book-cell">
@@ -49,5 +48,29 @@ Personalized Read
     {% endif %}
     {% endfor %}
 </div><!-- The final deck is closed here, outside the loop -->
+
+
+<head>
+    <link/>
+    <link rel="stylesheet" href="{% static 'main.css' %}" /> 
+  </head>
+  
+  <body>
+    <h3>Give me some name of books</h3>
+    <form action="{% url 'home_view' %}" method="post" id="basicform">
+      {% csrf_token %}
+      {{ form.input }}
+      <button type="submit">Find Books</button>
+    </form>
+  
+    <div>
+      <ul class="result">
+      </ul>
+    </div>
+  
+    <script src="{% static 'jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'main.js' %}"></script>
+  </body>
+  
 
 {% endblock main %}

@@ -8,7 +8,18 @@ import pandas as pd
 import os
 import json
 import requests
+from mainapp.forms import InputForm
+from utils.decorators import ajax_required
+from utils.mixins import FormErrors
+from django.views.decorators.http import require_POST
 
+from django.views import generic
+from django.utils.decorators import method_decorator
+from django.http import JsonResponse
+from django.conf import settings
+import openai
+from django.shortcuts import render
+openai.api_key = settings.OPENAI_API_KEY
 """
     Production File Path :  staticfiles_storage.url(file)
     Developement File Path : settings.STATICFILES_DIRS[0] + 'app/.../file'
@@ -133,3 +144,50 @@ def remove_saved_book(request):
         saved_book = SaveForLater.objects.filter(user=request.user, bookid=bookid)
         saved_book.delete()
         return JsonResponse({"success": True}, status=200)
+
+
+class HomeView(generic.FormView):
+    """
+    FormView used for our home page.
+
+    **Template:**
+
+    :template:`index.html`
+    """
+    template_name = "mainapp/recommendation.html"
+    form_class = InputForm
+    success_url = "/"
+
+    def generate_prompt(self, input):
+        return f'Suggest 3 books like {input}.  Write answer simple, include book name and author, each book a line'
+
+    @method_decorator(ajax_required)
+    def post(self, request,*args, **kwargs):
+        # print("runned---------------------------------------------")
+
+        data = {'result': 'Error', 'message': "Something went wrong, please try again", "redirect": False, "data":None}
+        
+        form = InputForm(request.POST)
+        if form.is_valid():
+
+            input = form.cleaned_data.get("input")
+            prompt = self.generate_prompt(input)
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                temperature=0.1,
+                messages=[{"role": "user", "content": prompt}]
+            )
+            # print(response['choices'][0]['message']['content'])
+            # exit()
+            data.update({
+                'result': "Success",
+                'message': "ChatGPT has suggested some names",
+                'data': list(filter(None,response['choices'][0]['message']['content'].splitlines( )))
+                # 'data' : response.choices[0]
+            })
+            
+            return JsonResponse(data)
+
+        else:
+            data["message"] = FormErrors(form)
+            return JsonResponse(data, status=400)

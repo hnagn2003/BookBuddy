@@ -14,10 +14,18 @@ from mainapp.helpers import (
 from mainapp.models import UserRating, SaveForLater
 from django.contrib import messages
 from django.core.paginator import Paginator
+from mainapp.forms import InputForm
+from utils.decorators import ajax_required
+from utils.mixins import FormErrors
 
-
+from django.views import generic
+from django.utils.decorators import method_decorator
+from django.http import JsonResponse
+from django.conf import settings
 import random
 import operator
+import openai
+openai.api_key = settings.OPENAI_API_KEY
 
 
 @ensure_csrf_cookie

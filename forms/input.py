@@ -15,4 +15,3 @@ class InputForm(forms.Form):
 
     class Meta:
         fields = ('input',)
-
