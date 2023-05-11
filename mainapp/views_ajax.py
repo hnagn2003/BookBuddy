@@ -154,7 +154,7 @@ class HomeView(generic.FormView):
 
     :template:`index.html`
     """
-    template_name = "mainapp/recommendation.html"
+    template_name = "mainapp/gpt.html"
     form_class = InputForm
     success_url = "/"
 

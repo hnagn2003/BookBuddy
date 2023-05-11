@@ -91,6 +91,11 @@
     color: black;
 }
 
+.gpt {
+    text-align: center;
+    font-size: 18px;
+}
+
 @media (max-width: 1103px) {
     .book-cell {
         width: 60%;
@@ -140,9 +145,10 @@
     font-size: 15px;
     border-radius: 20px;
     position: absolute;
-    right: 26%;
+    padding: 8px;
+    left: 250px;
     margin-top: 20%;
-    bottom: 70px;
+    bottom: 100px;
 }
 
 .more-details:hover {
@@ -159,9 +165,9 @@
     font-size: 15px;
     border-radius: 20px;
     padding: 8px;
-    bottom: 10px;
+    bottom: 50px;
     position: absolute;
-    left: 50%;
+    left: 245px;
 }
 
 .rating-block:hover {

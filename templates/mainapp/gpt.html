@@ -1,0 +1,30 @@
+{% extends "mainapp/layout.html" %}
+{% load static %}
+{% block title %} Gpt {% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'main.css' %}" /> 
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+{% endblock head %}
+
+{% block main %}
+<div class="heading">Give me some name of books</div>
+<div class="gptbody">
+  <form action="{% url 'home_view' %}" method="post" id="basicform">
+    {% csrf_token %}
+    {{ form.input }}
+
+    <button class="find-button" type="submit">Find Books</button>
+  </form>
+
+  <div class="body-result">
+    <ul class="result">
+    </ul>
+  </div>  
+</div>
+
+{% endblock main %}
+
+{% block script %}
+<script src="{% static 'jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'main.js' %}"></script>
+{% endblock script %}
