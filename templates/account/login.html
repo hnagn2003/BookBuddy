@@ -14,8 +14,8 @@ Login
 
 {% block main %}
 <div class="container account-block ">
-    <div class="h-100 row">
-        <div class="h-100 col-12 col-sm-12 col-xl-8 signin-block">
+    <div class="h-75 column">
+        <div class="h-75 col-12 col-sm-12 col-xl-8 signin-block">
             <h3 class="welcome">Welcome Back!</h3>
             <form method="POST" action="{% url 'account_login' %}">
                 {% csrf_token %}
@@ -47,9 +47,8 @@ Login
                 aria-hidden="true"></i> Sign In With Google</button></a>
 
         </div>
-        <div class="h-100 hidden-sm col-xl-4 img-block mw-100" style="background-image : url('{% static "mainapp/png/BookSignUp.webp" %}')">
-            <a class="btn-bot" href="{% url 'account_signup' %}">SIGN UP</a>
-        </div>
+        
     </div>
+    <a class="btn-bot" href="{% url 'account_signup' %}">Need an account?</a>
 </div>
-{% endblock main %}
+{% endblock main %} 
