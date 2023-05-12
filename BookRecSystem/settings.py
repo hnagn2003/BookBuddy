@@ -223,4 +223,4 @@ MESSAGE_TAGS = {
     messages.ERROR: "alert-danger",
 }
 
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
