@@ -152,14 +152,14 @@ def SaveList(request):
     book = set(
         SaveForLater.objects.filter(user=request.user).values_list("bookid", flat=True)
     )
-    book_id = list(book)
-    for i in range(len(book_id)):
-        if book_id[i] in rated_books:
-            saved_book = SaveForLater.objects.filter(
-                user=request.user, bookid=book_id[i]
-            )
-            saved_book.delete()
-            book_id.remove(book_id[i])
+    book_id = list(dict.fromkeys(book))
+    # for i in range(len(book_id)):
+    #     if book_id[i] in rated_books:
+    #         saved_book = SaveForLater.objects.filter(
+    #             user=request.user, bookid=book_id[i]
+    #         )
+    #         saved_book.delete()
+    #         book_id.remove(book_id[i])
     if len(book_id) == 0:
         messages.info(request, "Please Add Some Books")
         return redirect("index")
