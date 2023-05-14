@@ -135,12 +135,16 @@
                             <strong>Summary: </strong><br>
                             {% comment %} <img id="loading" src="{% static 'mainapp/gif/loading.gif' %}"> {% endcomment %}
                             <p id="booksummary">
-
+                                
                             </p>
                             <strong>Authors:</strong>
                             <p id="bookauthors">
                             </p>
-
+                            {% comment %} <script>
+                                const bookSummaryElement = document.getElementById('book'); // Get the booksummary element
+                                
+                                console.log(bookSummaryElement.textContent);
+                            </script> {% endcomment %}
                             <div id="bookrating"></div>
                         </div>
 
@@ -218,15 +222,14 @@
         }
         // display book boostrap modal when clicked
         function openModal(obj) {
-            $('#booksummary').text("");
-            $('#loading').show();
             var bookid = obj.getAttribute('data-bookid');
-            var summary = getsummary(bookid);
+            var summary = obj.getAttribute('data-desc');
             var bookName = obj.innerHTML;
             var authors = obj.getAttribute('data-authors');
             var imageurl = obj.getAttribute('data-imageurl');
             var averagerating = obj.getAttribute('data-averagerating');
             $('#booktitle').text(bookName);
+            $('#booksummary').text(summary);
             $('#bookauthors').text(authors);
             $('#bookimage').attr('src', imageurl);
             $("#bookrating").rateYo({
@@ -363,10 +366,11 @@
                     var summary = book_details.desc;
                     {% comment %} var summary = obj.getAttribute('data-desc');  {% endcomment %}                   
                     var bookName = book_details.original_title;
+                    console.log(book_details.original_title);
                     var authors = book_details.authors;
                     var imageurl = book_details.image_url;
                     var averagerating = book_details.average_rating;
-                    $('#booktitle').text(bookName);
+                    $('#booktitle').text(bookName); 
                     $('#bookauthors').text(authors);
                     $('#booksummary').text(summary);
                     $('#bookimage').attr('src', imageurl);
