@@ -181,8 +181,8 @@ SITE_ID = 1
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
         "APP": {
-            "client_id": "",
-            "secret": "",
+            "client_id": os.getenv('GOOGLE_OAUTH_CLIENT_ID'),
+            "secret": os.getenv('GOOGLE_OAUTH_SECRET_KEY'),
             "key": "",
         }
     }
@@ -198,12 +198,14 @@ LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "index"
 
 # simple mail transfer protocal
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get("KITABE_EMAIL")
-EMAIL_HOST_PASSWORD = os.environ.get("KITABE_PASS")
+# EMAIL_HOST_USER = os.getenv('EMAIL_USER')
+
+EMAIL_HOST_USER = 'hnagn2003@gmail.com'
+EMAIL_HOST_PASSWORD = 'pifytrbuggrnuamv'
 
 # Alluth Settings
 ACCOUNT_AUTHENTICATION_METHOD = "username"
